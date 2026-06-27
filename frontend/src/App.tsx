@@ -1,11 +1,11 @@
-function App() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900">
-      <h1 className="text-5xl font-bold text-cyan-400">
-        Tailwind CSS is working! 🎉
-      </h1>
-    </div>
-  );
-}
+import {RouterProvider} from 'react-router-dom';
+import {router} from './router/index';
+import { AuthProvider } from './context/AuthContext';
 
-export default App;
+export default function App(){
+    return (
+        <AuthProvider>
+            <RouterProvider router = {router} />
+        </AuthProvider>
+    )
+}
