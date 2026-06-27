@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {useForm} from 'react-hook-form';
+import {useNavigate} from 'react-router-dom';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useAuth} from '../context/AuthContext';
 import api from '../services/api';
@@ -13,7 +14,7 @@ import {
 
 export default function AuthPage(){
     const {login: saveSessionToGlobalState} = useAuth();
-
+    const navigate = useNavigate();
     const [isLoginView, setIsLoginView] = useState<boolean>(true);
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [serverError, setServerError] = useState<string | null>(null);
@@ -34,6 +35,7 @@ export default function AuthPage(){
             const response = await api.post('auth/login', data);
             const {token, user} = response.data;
             saveSessionToGlobalState(token, user);
+            navigate('/', {replace: true});
         } catch (error: any){
             setServerError(error.response?.data?.message || 'Invalid email or password.');
         }
@@ -50,6 +52,7 @@ export default function AuthPage(){
             const response = await api.post('/auth/register', backendPayload);
             const {token, user} = response.data;
             saveSessionToGlobalState(token, user);
+            setIsLoginView(true);
         } catch(error: any) {
             setServerError(error.response?.data?.message || 'Registration failed');
         }
