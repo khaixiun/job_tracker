@@ -20,7 +20,7 @@ const addActivity = async (req, res) => {
             [jobId, status || null, notes]
         );
 
-        return res.statsu(201).json({message: "Activity logged successfully"});
+        return res.status(201).json({message: "Activity logged successfully"});
 
     } catch(err) {
         console.error("Add Activity Error: ", err.message);
