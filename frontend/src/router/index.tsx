@@ -3,9 +3,9 @@ import AuthPage from '../pages/AuthPage';
 import Dashboard from '../pages/Dashboard/index';
 import DashboardLayout from '../layouts/DashboardLayout';
 import {PrivateRoutes, PublicRoutes} from './routeGuards';
+import JobList from '../pages/Jobs/JobsList'
 
 // Placeholder components for your other views
-const JobBoardPlaceholder = () => <div className="text-white p-6">💼 Job Board Page Coming Soon!</div>;
 const AnalyticsPlaceholder = () => <div className="text-white p-6">📊 Analytics Page Coming Soon!</div>;
 
 export const router = createBrowserRouter([
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
                 element: <DashboardLayout />,
                 children: [
                     { path: '/', element: <Dashboard />},
-                    { path: '/jobs', element: <JobBoardPlaceholder />},
+                    { path: '/jobs', element: <JobList />},
                     { path: '/analytics', element: <AnalyticsPlaceholder />},
                 ]
             }
