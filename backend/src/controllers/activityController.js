@@ -34,7 +34,12 @@ const getJobActivities = async (req, res) => {
         const userId = req.user.id;
 
         const [activities] = await pool.query(
-            `SELECT a.* FROM job_activities a
+            `SELECT a.job_act_id AS jobActId,
+            a.job_id AS jobId,
+            a.status,
+            a.notes,
+            a.activity_date AS activityDate
+            FROM job_activities a
             JOIN jobs j on a.job_id = j.job_id
             WHERE j.job_id = ? AND j.user_id = ? AND j.deleted_at IS NULL
             ORDER BY a.activity_date DESC`,

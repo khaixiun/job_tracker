@@ -18,7 +18,7 @@ const formatJobStatus = (job) => {
     if (!job) return null;
     return {
         ...job,
-        current_status: DISPLAY_STATUS_MAP[job.current_status] || 'Unknown'
+        currentStatus: DISPLAY_STATUS_MAP[job.currentStatus] || 'Unknown'
     };
 };
 
@@ -109,7 +109,23 @@ const getJobs = async (req, res) => {
             });
         }
 
-        let query = 'SELECT * FROM jobs WHERE user_id = ? AND deleted_at IS NULL';
+        let query = `
+            SELECT
+                job_id AS jobId,
+                user_id AS userId,
+                company_name AS companyName,
+                job_title AS jobTitle,
+                current_status AS currentStatus,
+                job_url AS jobUrl,
+                salary,
+                location,
+                created_at AS createdAt,
+                updated_at AS updatedAt,
+                deleted_at AS deletedAt
+            FROM jobs
+            WHERE user_id = ? AND deleted_at IS NULL
+        `;
+
         let queryParams = [userId];
 
         if (searchText) {
@@ -144,7 +160,20 @@ const getJobById = async (req, res) => {
         const jobId = req.params.id;
 
         const [jobs] = await pool.query(
-            'SELECT * FROM jobs WHERE job_id = ? AND user_id = ? AND deleted_at IS NULL',
+            `SELECT
+                job_id AS jobId,
+                user_id AS userId,
+                company_name AS companyName,
+                job_title AS jobTitle,
+                current_status AS currentStatus,
+                job_url AS jobUrl,
+                salary,
+                location,
+                created_at AS createdAt,
+                updated_at AS updatedAt,
+                deleted_at AS deletedAt
+            FROM jobs
+            WHERE user_id = ? AND deleted_at IS NULL`,
             [jobId, userId] 
         )
 
