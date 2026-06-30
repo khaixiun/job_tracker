@@ -4,7 +4,7 @@ import api from '../../services/api'
 import MetricCard from './MetricCards';
 import PipelineOverview from './Pipeline';
 import QuickAddForm from './QuickAddForm';
-import UpcomingInterview from './UpcomingInterviews';
+import UpcomingInterview, { type InterviewItem } from './UpcomingInterviews';
 
 interface DashboardData {
   totalApplication: number;
@@ -18,7 +18,7 @@ interface DashboardData {
     offered: number; 
     rejected: number;
   } | null;
-  upcomingInterviews: any[];
+  upcomingInterviews: InterviewItem[];
 }
 
 export default function Dashboard(){
