@@ -29,7 +29,7 @@ export default function MetricCards({data} : MetricCardsProps) {
                         key={stat.title}
                         className="bg-[#0f1422] border border-slate-800/80 rounded-2xl p-6 relative overflow-hidden group hover:border-slate-700/60 transition-all duration-300"
                     >
-                        <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">{stat.title}</p>
+                        <p className="text-sm font-semibold text-slate-400 uppercase tracking-wider">{stat.title}</p>
                         <div className="mt-4">
                             <h3 className="text-3xl font-bold tracking-tight text-white">{stat.value}</h3>
                         </div>

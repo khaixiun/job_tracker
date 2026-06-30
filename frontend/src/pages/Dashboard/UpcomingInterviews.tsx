@@ -45,8 +45,8 @@ export default function UpcomingInterview({interviews = []} : UpcomingInterviewP
         <section className="bg-[#0f1422] border border-slate-800/80 rounded-2xl p-6 h-full flex flex-col">
             <div className="flex items-center justify-between mb-6">
                 <div>
-                    <h2 className="text-base font-bold text-white">Upcoming Interview</h2>
-                    <p className="text-[11px] text-slate-500 mt-0.5">All scheduled sessions</p>
+                    <h2 className="text-lg font-bold text-white">Upcoming Interview</h2>
+                    <p className="text-sm text-slate-500 mt-0.5">All scheduled sessions</p>
                 </div>
                 <span className="text-[10px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-full uppercase tracking-wider">
                     {interviews.length} Scheduled

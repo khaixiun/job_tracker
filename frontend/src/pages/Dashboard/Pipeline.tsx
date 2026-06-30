@@ -28,7 +28,7 @@ export default function PipelineOverview({pipeline, successRate} : PipelineOverv
     return(
         <section className="bg-[#0f1422] border border-slate-800/80 rounded-2xl p-6 flex flex-col justify-between h-full">
             <div>
-                <h2 className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-6">
+                <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300 mb-6">
                     Pipeline Overview
                 </h2>
 
@@ -39,7 +39,7 @@ export default function PipelineOverview({pipeline, successRate} : PipelineOverv
                             <div key={row.label} className="flex items-center justify-between text-xs font-medium">
                                 <div className="flex items-center gap-2.5 w-28">
                                     <span className={`h-2 w-2 rounded-full ${row.color}`} />
-                                    <span className="text-slate-400">{row.label}</span>
+                                    <span className="text-slate-400 text-sm">{row.label}</span>
                                 </div>
 
                                 <span className="text-white font-semibold text-right w-8 pr-3">
