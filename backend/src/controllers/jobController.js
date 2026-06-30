@@ -34,7 +34,7 @@ const createJob = async (req, res) => {
         ? rawStatus.charAt(0).toUpperCase() + rawStatus.slice(1).toLowerCase()
         : null;
 
-    if(current_status && !STATUS_MAP[currentStatus]){
+    if(currentStatus && !STATUS_MAP[currentStatus]){
         return res.status(400).json({
             message: "Invalid status value provided"
         });
