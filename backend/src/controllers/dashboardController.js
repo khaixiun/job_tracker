@@ -36,6 +36,21 @@ const getDashboardSummary = async (req, res) => {
             ? Math.round((offered / totalApplication) * 100)
             : 0;
 
+        const [interviewRows] = await pool.query(
+            `SELECT
+                i.interview_id AS interviewId,
+                i.interview_type AS interviewType,
+                i.scheduled_at AS scheduledAt,
+                i.meeting_link AS meetingLink,
+                j.company_name AS companyName,
+                j.job_title AS jobTitle
+            FROM interviews i
+            INNER JOIN jobs j ON i.job_id = j.job_id
+            WHERE j.user_id = ? AND i.scheduled_at > NOW() AND j.deleted_at IS NULL
+            ORDER BY i.scheduled_at ASC`,
+            [userId]
+        );
+
         return res.status(200).json({
             totalApplication,
             activeInterviews: interviewing,
@@ -47,7 +62,8 @@ const getDashboardSummary = async (req, res) => {
                 interviewing,
                 offered,
                 rejected
-            }
+            },
+            upcomingInterviews: interviewRows
         });
     } catch (err) {
         console.error("Get Dashboard Summary Error: ", err.message);
